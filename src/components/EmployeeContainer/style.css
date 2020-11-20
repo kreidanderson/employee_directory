@@ -1,4 +1,15 @@
 
-li {
-width: 500px
-}
+@media screen and (max-width: 992px) {
+    .container div ul li {
+        width: 800px
+    }
+  }
+
+
+@media screen and (min-width: 993px) {
+    .container div ul li {
+        width: 800px
+    }
+  }
+
+

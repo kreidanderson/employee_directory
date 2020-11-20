@@ -4,7 +4,7 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import "./style.css";
 
 const EmployeeContainer = (props) => {
-  
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     // Fetch data from api
@@ -14,6 +14,8 @@ const EmployeeContainer = (props) => {
         setEmployees(respJSON.results);
       });
   });
+
+  
 
  return (
   <div className="container">

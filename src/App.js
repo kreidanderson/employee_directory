@@ -8,16 +8,25 @@ import "./App.css";
 
 
       function App() {
-        const [employees, setEmployees] = useState([]);
+        const [employees, setEmployees] = useState({
+          employeeArr: [],
+          filteredEmployees: []
+        });
 
-        const onEmployeeSearch = (searchResults) => {
-          setEmployees(searchResults);
+       
 
+        const onEmployeeSearch = (e) => {
+          setEmployees(e.target.value);
+          
+          
         }
+
+      
+
         return (
           <div className="App">
             <NavBar employees={employees} onEmployeeSearch={onEmployeeSearch}/>
-            <input className="search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <input onChange={onEmployeeSearch} className="search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
             <TableHead />
             <EmployeeContainer employees={employees}/>
           </div>

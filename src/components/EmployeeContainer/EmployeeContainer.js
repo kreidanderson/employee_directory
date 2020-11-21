@@ -2,20 +2,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import "./style.css";
+import empData from "../../utils/empData.json"
+import App from "../../App"
 
 const EmployeeContainer = (props) => {
   const [employees, setEmployees] = useState([]);
 
+
   useEffect(() => {
-    // Fetch data from api
-    fetch("https://randomuser.me/api/?results=50&nat=us")
-      .then(resp => resp.json())
-      .then(respJSON => {
-        setEmployees(respJSON.results);
-      });
+      setEmployees(empData.results);
   });
 
-  
+  // setEmployees(empData.results);
+  // console.log(empData.results[0].email)
 
  return (
   <div className="container">

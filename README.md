@@ -3,6 +3,9 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
  
   By: Katie Reid-Anderson
+
+![Employee Directory](./Readme-Asset/emp_directory.png)
+
   
   ## Description
   This project uses React components to search employee names in the directory. It allows the user to sort employees by first or last name and also filters employees out upon a search in the searchbar.

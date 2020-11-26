@@ -9,47 +9,57 @@ import empData from "./utils/empData.json"
 
 
 function App() {
-  const [employees, setEmployees] = useState({
-    employeeArr: [],
-    filteredEmployees: []
-  });
+  const [employees, setEmployees] = useState(empData.results);
+
+  const [displayEmployees, setDisplayEmployees] = useState(empData.results)
 
   const onEmployeeSearch = (e) => {
+    var newFilteredEmps = [];
+    var allEmps = empData.results;
 
-    var newFilteredEmps = []
-
-    var allEmps = empData.results
-
-    console.log(allEmps)
     allEmps.map(function (allEmployees) {
-      if (e.target.value === allEmployees.name.first.substring(0, e.target.value.length)) {
-        // console.log("there is a match")
+      if (
+        e.target.value ===
+        allEmployees.name.first.substring(0, e.target.value.length)
+      ) {
         newFilteredEmps.push(allEmployees);
-        console.log(newFilteredEmps)
+        console.log(newFilteredEmps);
       }
-    })
+    });
 
-    setEmployees({ ...employees, filteredEmployees: newFilteredEmps })
-  }
+    setDisplayEmployees(newFilteredEmps);
+  };
 
-  var searchResults = employees
-
-  if (employees.filteredEmployees.length > 0) {
-    searchResults = employees.filteredEmployees
-  }
 
   const sortByName = () => {
-    console.log("sort button working")
+    let sorted = [...empData.results]
+    sorted.sort((a, b) => a.name.first.localeCompare(b.name.first))
+    
+    setDisplayEmployees(sorted)
+  };
 
-  }
-
+  const sortByLastName = () => {
+    let sortedLast = [...empData.results]
+    sortedLast.sort((a, b) => a.name.last.localeCompare(b.name.last))
+    
+    setDisplayEmployees(sortedLast)
+  };
 
   return (
     <div className="App">
-      <NavBar employees={employees} onEmployeeSearch={onEmployeeSearch} />
-      <input onChange={onEmployeeSearch} className="search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <TableHead sortByName={sortByName} />
-      <EmployeeContainer employees={searchResults} />
+      <NavBar />
+      <div className="container">
+      <input
+        style={{width: 1110}}
+        onChange={onEmployeeSearch}
+        className="search form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      </div>
+      <TableHead sortByName={sortByName} sortByLastName={sortByLastName} />
+      <EmployeeContainer employees={displayEmployees} />
     </div>
   );
 }
